@@ -19,7 +19,5 @@ function setup() {
     ellipse(200, 170, 40); // left eye
     
     fill("Green");
-    strokeWeight(9);
-	ellipse(300, 220, 10, 20); // right eye
-}
+	ellipse(300, 220, 10, 20); // nose
  
