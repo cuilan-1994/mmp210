@@ -20,4 +20,4 @@ function setup() {
     
     fill("Green");
 	ellipse(300, 220, 10, 20); // nose
- 
+}
