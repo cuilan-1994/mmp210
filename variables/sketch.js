@@ -55,9 +55,9 @@ function setup() {
 	stroke(0);
      var eyeSize =180
     var y=50
-    var X=25
-	ellipse(160, eyeSize, y, x); //eyes
-	ellipse(240, eyeSize, y, x); 
+   
+	ellipse(160, eyeSize, y, 25); 
+	ellipse(240, eyeSize, y, 25); 
     
     
     fill(0);
