@@ -1,5 +1,10 @@
 function sandwich (fruit){
+    
 console.log ("i want a"+ fruit )}
+
+
+
+var faceSize =   00;
 function setup() { 
  createCanvas(600, 400);
 	background("lightblue");
