@@ -31,3 +31,9 @@ h1{
 	background-color: #ffbf00;
 }
 
+.left-responsive{ 
+	max-width:35%; 
+	height: auto;
+	float: right;
+	margin:5px 15px 5px 5px;
+}
