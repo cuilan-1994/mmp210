@@ -93,11 +93,11 @@ function draw(){
 	var o = 50; // offset
 
 	
-	fill(0);
+	fill("#FF4E3A");
 	stroke(r, g, b);
 	strokeWeight(9);
 
-	var mouthSize = map(mouseX, 0, width, 5, 200); // move mouth with mouse x
+	var mouthSize = map(mouseX, 50, width, 1, 50); // move mouth with mouse x
 	mouthSize = max(0, mouthSize); // prevents negative value error
 
 	rect(x, y + 15, s/4, mouthSize, 10); // mouth
