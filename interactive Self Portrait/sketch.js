@@ -43,9 +43,10 @@ function setup() {
 	ellipse(120, 190, earSize, earsSize); //ears
 	ellipse(280, 190, earSize, earsSize); //ears
 
-	
 
-	//detail & shadow
+
+
+
 	stroke(219, 190, 169);
 	fill(250, 220, 197);
 	ellipse(x, y-10, 155, 166); //face
@@ -58,13 +59,9 @@ function setup() {
 	ellipse(eyeX+80, eyeY, earsSize, 25); 
     
     
-    fill(0);
-	stroke(0);
-    ellipse(eyeX, eyeY, 20); //eyes
-	ellipse(240, eyeY, 20); 
     
 	line(190, 190, 200, 200); //nose
-	line(210, 220, 185, 220); //mouth
+	
 
 	noStroke(); //chin
 	fill(134, 89, 45, 90);
@@ -78,3 +75,33 @@ function setup() {
 
 	
 }
+function draw(){
+    	var r = 0; // red;
+	var g = map(mouseX, 0, width, 0, 255); // green
+	var b = map(mouseY, 0, height, 0, 255); // blue
+    
+	fill(r, g, b);
+	noStroke();
+    ellipse(160, 180, 20); //eyes
+	ellipse(240, 180, 20); 
+    
+    rectMode(CENTER);
+	
+	var x = width/2;
+	var y = height/2;
+	var s = 200; // size
+	var o = 50; // offset
+
+	
+	fill(0);
+	stroke(r, g, b);
+	strokeWeight(9);
+
+	var mouthSize = map(mouseX, 0, width, 5, 200); // move mouth with mouse x
+	mouthSize = max(0, mouthSize); // prevents negative value error
+
+	rect(x, y + 15, s/4, mouthSize, 10); // mouth
+     
+    
+}
+ 
