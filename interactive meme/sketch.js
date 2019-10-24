@@ -2,8 +2,8 @@
 var dog1, dog2;
 
 function preload() {
-	dog1 = loadImage("img/download.jpeg");
-    dog2 = loadImage("img/dog.jpg");
+	dog = loadImage("img/download.jpeg");
+    cat = loadImage("img/cat copy.jpg");
 
 }
 function setup() {
@@ -15,16 +15,16 @@ function draw() {
 	rectMode(CENTER);
     
     if (mouseX > width/2) {
-        image(dog1, 0, 0, width/2, height);
-        image(dog2, width/2, 0, width/2, height);
+        image(dog, 0, 0, width/2, height);
+        image(cat, width/2, 0, width/2, height);
     } else {
-        image(dog2, 0, 0, width/2, height);
-        image(dog1, width/2, 0, width/2, height);
+        image(cat, 0, 0, width/2, height);
+        image(dog, width/2, 0, width/2, height);
     }
 
 	if (mouseIsPressed) {
 		if (mouseX > width/2) {
-            fill(255);
+            fill("#9332a8");
     textAlign(CENTER, CENTER);
     textSize(100);
     textFont("Courier New");
