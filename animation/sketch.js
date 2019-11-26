@@ -1,7 +1,3 @@
-
-
-
-
 function preload() {
 	dog = loadImage("img/download.jpeg");
     cat = loadImage("img/cat copy.jpg");
