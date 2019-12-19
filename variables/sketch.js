@@ -20,9 +20,9 @@ function setup() {
 
 
 	//hair
-   var hairColor =(48, 22, 7)
-   var headColor =(230, 202, 181)
-   var faceColor =(230, 202, 181)
+   var hairColor =color(48, 22, 7)
+   var headColor =color(230, 202, 181)
+   var faceColor =color(230, 202, 181)
     var earSize =30
     var earsSize=50 
     var eyebagSize= 12
