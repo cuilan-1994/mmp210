@@ -1,6 +1,12 @@
 var serial;
 var portName = "/dev/tty.usbmodem143201";
 var sensorValue;
+function preload() {
+    Happyface = loadImage("happyface.jpg");
+    Sadface = loadImage("sademoji.jpg");
+    sensor = loadImage("sensor.jpg");
+}
+
 function setup() {
 	createCanvas(640, 360);
 
@@ -48,7 +54,10 @@ function draw() {
 	var y = map(sensorValue, 0, 1023, height, 0);
 	fill('red');
 	noStroke();
-	ellipse(width/2, y+50, 50);
+	
+    
+  image(img, y, 0, width/2, height/2);
+   
 
     var y = map(sensorValue, 10, 1023, height, 0);
 	fill('red');
