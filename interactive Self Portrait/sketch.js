@@ -20,7 +20,7 @@ function setup() {
 
 
 	//hair
-   var hairColor =(48, 22, 7)
+   var hairColor =color(48, 22, 7)
    var Color =(230, 202, 181)
     var earSize =30
     var earsSize=50 
