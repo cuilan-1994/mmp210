@@ -1,115 +1,110 @@
-var slideNumber = 0;
-var totalSlides = 3;
+/* 
+    p5 + arduino skecth
+    11.12.2019
+*/
 
-var nextBtnX = 700;
-var nextBtnY = 500;
-var nextBtnSize = 70;
-
-var prevBtnX = 150;
-var prevBtnY = 500;
-var prevBtnW = 50;
-var prevBtnH = 50;
-var prevBtnSize = 70;
-
-var Happyface;
-var Sadface;
-var sensor;
+var serial;
+var portName = "/dev/tty.usbmodem14101";
+var sensorValue;
+var happyface;
+var laugh;
 
 function preload() {
-    Happyface = loadImage("happyface.jpg");
-    Sadface = loadImage("sademoji.jpg");
-    sensor = loadImage("sensor.jpg");
+    laugh = loadSound("laugh.mp3");
 }
 
 function setup() {
-    createCanvas(800, 600);
+    createCanvas(640, 360);
+    
+    serial = new p5.SerialPort();
+    serial.on('connected', serverConnected);
+    serial.on('open', portOpen);
+    serial.on('data', serialEvent);
+    serial.on('close', serialError);
+    serial.on('error', portClose);
+    
+    serial.open(portName);
 }
+
+function serverConnected() {
+    console.log('connected');
+}
+
+function portOpen() {
+    console.log('port open');
+}
+
+function portClose() {
+    console.log('port close');
+}
+
+function serialError() {
+    console.log('error');
+}
+
+function serialEvent() {
+    var currentString = serial.readLine();
+    trim(currentString);
+    if (!currentString) {
+        return;
+    }
+    sensorValue = currentString;
+
+}
+
 
 function draw() {
-    background("#E9967A");
- 
-    if (slideNumber == 0) {
-        // content for slide number 0
-        fill("#CD5C5C");
-        textSize(50);
-        textAlign(CENTER, CENTER);
-        text("Final Project Pitch", width/2, height/2);
-        
-        textSize(30);
-        text("by Katherine and Lan.cui", width/2, height/2 + 50);
-        
-    } else if (slideNumber == 1) {
-        // content for slide number 1
-        
-        fill("black");
-        textSize(50);
-        textAlign(BOTTOM, BOTTOM);
-        text("IR Sensor", width/2, 100);
-        
-        
-        image(sensor, 200, 200, width/2, height/2);
-        
-        
-        textSize(16);
-        textAlign(TOP, TOP);
-        text(" The person hovers over the IR Sensor and it will change the mood.", width/2, height - 100);
+    var c = map(sensorValue, 300, 1023, 0, 180);
+
+   if (sensorValue < 400) {
+       
+    background("red");
+     } else {
+      
     
-    } else if (slideNumber == 2) {
-        
-        // theme
-        var happyemojiY = 0;
-        var sademoji = height/2;
-
-        image(Happyface, 0, 0, width, height);
-        image(Sadface, 0, 0, width, height);
-        text("When you hover over the sensor, the face gets happy, because your interacting with it, for example when you go inside a place and pass the door, it gets happy because you came in", width/2, height/2);
-
-
+     background("#039dfc");
     }
     
+    var y = map(sensorValue, 0, 1023, height, 10);
+    var x = map(sensorValue, 0, 1023, height, 10);
     
-    /* drawing buttons */
+    noStroke();
+    fill("pink");
+    fill("#fcba03");
+    ellipse(300, 180, 350, 350);
     
-    // next btn
-    if (slideNumber < totalSlides - 1) {
-        fill(255);
-        noStroke();
-        ellipse(nextBtnX, nextBtnY, nextBtnSize);
-        fill(0);
-        textSize(16);
-        textAlign(CENTER, CENTER);
-        text("Next", nextBtnX, nextBtnY);
-    }
+    // eyes
+    fill("black");
+    strokeWeight(5);
+    ellipse(250, 150, 70, 70);
+    ellipse(350, 150, 70, 70);
+  
     
-    
-    // prev btn
-    if (slideNumber > 0) {
-       fill(255);
-        noStroke();
-        ellipse(prevBtnX-50, prevBtnY, prevBtnW+20, prevBtnH+20);
-        fill(0);
-        textSize(16);
-        textAlign(CENTER, CENTER);
-        text("Previous", prevBtnX -50, prevBtnY);  
-    }
-   
-    
+
+    // pupils
+    fill("lavender");
+    ellipse(250, 150, 30, 30);
+    ellipse(350, 150, 30, 30);
+
+    // mouth
+    stroke("black");
+    noStroke();
+    fill("red");
+
+    if (sensorValue < 400) {
+         arc(300, 250, 100, 100, 0, PI);
+     } else {
+        arc(300, 280, y+50, 90, PI, TWO_PI);
+     }
+
+
 }
 
+
+
 function mousePressed() {
-    
-    // next btn
-    var d = dist(mouseX, mouseY, nextBtnX, nextBtnY);
-    if (d < nextBtnSize/2 && slideNumber < totalSlides - 1) {
-        slideNumber++;    
-    }
-    
-    // prev btn
-    if (mouseX > prevBtnX &&
-       mouseX < prevBtnX + prevBtnW &&
-       mouseY > prevBtnY &&
-       mouseY < prevBtnY + prevBtnH &&
-       slideNumber > 0) {
-        slideNumber--;    
+    if (mouseX > 0 && mouseX < width && 
+        mouseY > 0 && mouseY < height) {
+        laugh.play();
     }
 }
